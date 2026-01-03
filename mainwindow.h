@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDoubleSpinBox>
+#include <QList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,5 +21,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    QList<QDoubleSpinBox*> m_gradeInputs;
+    QList<QDoubleSpinBox*> m_creditInputs;
 };
 #endif // MAINWINDOW_H
