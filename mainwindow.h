@@ -19,10 +19,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_calculateButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     QList<QDoubleSpinBox*> m_gradeInputs;
-    QList<QDoubleSpinBox*> m_creditInputs;
+    QList<QSpinBox*> m_creditInputs;
 };
 #endif // MAINWINDOW_H
