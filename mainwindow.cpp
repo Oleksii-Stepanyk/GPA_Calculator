@@ -6,8 +6,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    m_gradeInputs << ui->gradeEdit << ui->gradeEdit_2 << ui->gradeEdit_3;
-    m_creditInputs << ui->creditEdit << ui->creditEdit_2 << ui->creditEdit_3;
 }
 
 MainWindow::~MainWindow()

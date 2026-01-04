@@ -23,6 +23,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(GPA_Calculator
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        coursecard.h coursecard.cpp coursecard.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET GPA_Calculator APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
