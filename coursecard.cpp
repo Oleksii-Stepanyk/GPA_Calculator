@@ -12,3 +12,11 @@ CourseCard::~CourseCard()
 {
     delete ui;
 }
+
+double CourseCard::getGrade(){
+    return ui->gradeEdit->value();
+}
+
+double CourseCard::getCredits(){
+    return ui->creditEdit->value();
+}

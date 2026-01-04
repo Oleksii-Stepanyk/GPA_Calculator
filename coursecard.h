@@ -14,6 +14,8 @@ class CourseCard : public QWidget
 public:
     explicit CourseCard(QWidget *parent = nullptr);
     ~CourseCard();
+    double getGrade();
+    double getCredits();
 
 private:
     Ui::CourseCard *ui;
