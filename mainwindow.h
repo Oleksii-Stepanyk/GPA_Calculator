@@ -24,6 +24,7 @@ public:
 
 private slots:
     void on_calculateButton_clicked();
+    void on_addCourse_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -32,5 +33,6 @@ private:
     QGridLayout* m_gridLayout;
 
     void reclusterGrid();
+    void removeCourse(CourseCard* card);
 };
 #endif // MAINWINDOW_H
