@@ -21,14 +21,16 @@ void MainWindow::on_calculateButton_clicked()
     double totalPoints = 0.0;
     double totalCredits = 0.0;
 
-    for (int i = 0; i < m_gradeInputs.size(); ++i) {
-        double grade = m_gradeInputs[i]->value();
-        double credits = m_creditInputs[i]->value();
+    for (int i = 0; i < m_courses.size(); ++i) {
+        double grade = m_courses[i]->getGrade();
+        double credits = m_courses[i]->getCredits();
 
-        if (credits > 0.0) {
-            totalPoints += (grade * credits);
-            totalCredits += credits;
+        if (credits <= 0.0) {
+            continue;
         }
+
+        totalPoints += (grade * credits);
+        totalCredits += credits;
     }
 
     if (totalCredits == 0.0) {
