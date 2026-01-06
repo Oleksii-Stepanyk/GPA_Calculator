@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QDoubleSpinBox>
 #include <QList>
+#include <QGridLayout>
+
+#include "coursecard.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,7 +28,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    QList<QDoubleSpinBox*> m_gradeInputs;
-    QList<QSpinBox*> m_creditInputs;
+    QList<CourseCard*> m_courses;
+    QGridLayout* m_gridLayout;
+
+    void reclusterGrid();
 };
 #endif // MAINWINDOW_H

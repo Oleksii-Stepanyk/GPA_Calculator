@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    m_gridLayout = qobject_cast<QGridLayout*>(ui->centralwidget->layout());
+    m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 }
 
 MainWindow::~MainWindow()
