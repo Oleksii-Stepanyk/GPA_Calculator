@@ -17,6 +17,12 @@ public:
     double getGrade();
     double getCredits();
 
+signals:
+    void removeRequested(CourseCard* card);
+
+private slots:
+    void on_removeCourse_clicked();
+
 private:
     Ui::CourseCard *ui;
 };

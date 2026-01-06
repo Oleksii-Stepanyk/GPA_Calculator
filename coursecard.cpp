@@ -20,3 +20,8 @@ double CourseCard::getGrade(){
 double CourseCard::getCredits(){
     return ui->creditEdit->value();
 }
+
+void CourseCard::on_removeCourse_clicked()
+{
+    emit removeRequested(this);
+}
