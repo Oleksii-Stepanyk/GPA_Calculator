@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "GlobalConfig.h"
+
+using namespace GlobalConfig;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,11 +11,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     m_gridLayout = qobject_cast<QGridLayout*>(ui->containerWidget->layout());
-    for(int i = 0; i < 4; i++) {
-        m_gridLayout->setColumnMinimumWidth(i, 320);
+    for(int i = 0; i < GRID_COLUMNS; i++) {
+        m_gridLayout->setColumnMinimumWidth(i, 240);
     }
+    int horSpacing = (WINDOW_WIDTH - GRID_COLUMNS * 240) / GRID_COLUMNS;
+
+    m_gridLayout->setHorizontalSpacing(horSpacing);
+    m_gridLayout->setVerticalSpacing(22);
+    m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
+
+    ui->outputLabel->setText(QString::fromStdString(GPA_STRING) + QString::number(GPA_DEFAULT_VALUE, 'f', 2));
     reclusterGrid();
-    m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 }
 
 MainWindow::~MainWindow()
@@ -38,12 +47,12 @@ void MainWindow::on_calculateButton_clicked()
     }
 
     if (totalCredits == 0.0) {
-        ui->outputLabel->setText("GPA: 0.00");
+        ui->outputLabel->setText(QString::fromStdString(GPA_STRING) + QString::number(GPA_DEFAULT_VALUE, 'f', 2));
         return;
     }
 
     double gpa = totalPoints / totalCredits;
-    ui->outputLabel->setText("GPA: " + QString::number(gpa, 'f', 2));
+    ui->outputLabel->setText(QString::fromStdString(GPA_STRING) + QString::number(gpa, 'f', 2));
 }
 
 void MainWindow::on_addCourse_clicked()
@@ -52,8 +61,8 @@ void MainWindow::on_addCourse_clicked()
     connect(newCard, &CourseCard::removeRequested, this, &MainWindow::removeCourse);
 
     int index = m_courses.count();
-    int row = index / 4;
-    int col = index % 4;
+    int row = index / GRID_COLUMNS;
+    int col = index % GRID_COLUMNS;
 
     m_gridLayout->addWidget(newCard, row, col);
     m_courses.append(newCard);
@@ -63,19 +72,19 @@ void MainWindow::on_addCourse_clicked()
 void MainWindow::reclusterGrid()
 {
     for (int i = 0; i < m_courses.size(); ++i) {
-        m_gridLayout->addWidget(m_courses[i], i / 4, i % 4);
+        m_gridLayout->addWidget(m_courses[i], i / GRID_COLUMNS, i % GRID_COLUMNS);
         m_courses[i]->setVisible(true);
     }
     int btnIndex = m_courses.size();
-    int btnRow = btnIndex / 4;
-    int btnCol = btnIndex % 4;
+    int btnRow = btnIndex / GRID_COLUMNS;
+    int btnCol = btnIndex % GRID_COLUMNS;
 
     if (btnCol == 0)
     {
-        m_gridLayout->setRowMinimumHeight(btnRow, 285);
+        m_gridLayout->setRowMinimumHeight(btnRow, 240);
     }
     m_gridLayout->removeWidget(ui->addCourse);
-    m_gridLayout->addWidget(ui->addCourse, btnIndex / 4, btnIndex % 4);
+    m_gridLayout->addWidget(ui->addCourse, btnRow, btnCol, Qt::AlignCenter);
 }
 
 void MainWindow::removeCourse(CourseCard* card)
