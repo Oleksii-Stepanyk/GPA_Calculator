@@ -16,6 +16,11 @@ public:
     ~CourseCard();
     double getGrade();
     double getCredits();
+    QString getTitle();
+
+    void setGrade(double grade);
+    void setCredits(double credits);
+    void setTitle(const QString& title);
 
 signals:
     void removeRequested(CourseCard* card);
