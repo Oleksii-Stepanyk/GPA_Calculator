@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_gridLayout->setHorizontalSpacing(horSpacing);
     m_gridLayout->setVerticalSpacing(22);
-    m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
+    m_gridLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft | Qt::AlignCenter);
 
     ui->outputLabel->setText(QString::fromStdString(GPA_STRING) + QString::number(GPA_DEFAULT_VALUE, 'f', 2));
     reclusterGrid();
