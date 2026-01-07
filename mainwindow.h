@@ -22,6 +22,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+    void saveSettings();
+    void loadSettings();
+
 private slots:
     void on_calculateButton_clicked();
     void on_clearButton_clicked();
