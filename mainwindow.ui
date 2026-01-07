@@ -17,7 +17,7 @@
    <widget class="QPushButton" name="calculateButton">
     <property name="geometry">
      <rect>
-      <x>1100</x>
+      <x>950</x>
       <y>580</y>
       <width>141</width>
       <height>71</height>
@@ -39,9 +39,9 @@
    <widget class="QLabel" name="outputLabel">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>580</y>
-      <width>1021</width>
+      <x>70</x>
+      <y>590</y>
+      <width>301</width>
       <height>71</height>
      </rect>
     </property>
@@ -135,9 +135,32 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QPushButton" name="clearButton">
+    <property name="geometry">
+     <rect>
+      <x>1120</x>
+      <y>580</y>
+      <width>141</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <italic>false</italic>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <fontweight>DemiBold</fontweight>
+     </font>
+    </property>
+    <property name="text">
+     <string>Clear All</string>
+    </property>
+   </widget>
    <zorder>scrollArea</zorder>
    <zorder>calculateButton</zorder>
    <zorder>outputLabel</zorder>
+   <zorder>clearButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

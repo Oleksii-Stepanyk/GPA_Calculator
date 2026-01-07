@@ -55,6 +55,16 @@ void MainWindow::on_calculateButton_clicked()
     ui->outputLabel->setText(QString::fromStdString(GPA_STRING) + QString::number(gpa, 'f', 2));
 }
 
+void MainWindow::on_clearButton_clicked(){
+    for (int i = 0; i < m_courses.size(); ++i) {
+        CourseCard* card = m_courses[i];
+        m_gridLayout->removeWidget(card);
+        card->deleteLater();
+    }
+    m_courses.clear();
+    reclusterGrid();
+}
+
 void MainWindow::on_addCourse_clicked()
 {
     CourseCard* newCard = new CourseCard(this);

@@ -24,6 +24,7 @@ public:
 
 private slots:
     void on_calculateButton_clicked();
+    void on_clearButton_clicked();
     void on_addCourse_clicked();
 
 private:
