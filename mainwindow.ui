@@ -79,6 +79,18 @@
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
+      <property name="leftMargin">
+       <number>35</number>
+      </property>
+      <property name="topMargin">
+       <number>22</number>
+      </property>
+      <property name="rightMargin">
+       <number>35</number>
+      </property>
+      <property name="bottomMargin">
+       <number>22</number>
+      </property>
       <item row="0" column="0">
        <widget class="QPushButton" name="addCourse">
         <property name="sizePolicy">
