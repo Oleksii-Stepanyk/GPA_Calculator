@@ -43,6 +43,7 @@ void MainWindow::loadSettings()
 
         CourseCard* newCard = new CourseCard(this);
         connect(newCard, &CourseCard::removeRequested, this, &MainWindow::removeCourse);
+        connect(newCard, &CourseCard::cardChanged, this, &MainWindow::calculateGPA);
 
         newCard->setTitle(settings.value("name").toString());
         newCard->setCredits(settings.value("credits").toInt());
@@ -53,6 +54,7 @@ void MainWindow::loadSettings()
     settings.endArray();
 
     reclusterGrid();
+    calculateGPA();
     ui->containerWidget->updateGeometry();
     ui->scrollArea->update();
 }
@@ -91,7 +93,7 @@ void MainWindow::calculateGPA()
         double grade = m_courses[i]->getGrade();
         double credits = m_courses[i]->getCredits();
 
-        if (credits <= 0.0) {
+        if (!(credits > 0.0)) {
             continue;
         }
 
