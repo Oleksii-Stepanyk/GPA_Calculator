@@ -6,6 +6,9 @@ CourseCard::CourseCard(QWidget *parent)
     , ui(new Ui::CourseCard)
 {
     ui->setupUi(this);
+
+    connect(ui->creditEdit, &QSpinBox::valueChanged, this, &CourseCard::cardChanged);
+    connect(ui->gradeEdit, &QDoubleSpinBox::valueChanged, this, &CourseCard::cardChanged);
 }
 
 CourseCard::~CourseCard()

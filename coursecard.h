@@ -23,6 +23,7 @@ public:
     void setTitle(const QString& title);
 
 signals:
+    void cardChanged();
     void removeRequested(CourseCard* card);
 
 private slots:

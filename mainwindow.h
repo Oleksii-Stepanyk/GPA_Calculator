@@ -28,7 +28,6 @@ protected:
     void loadSettings();
 
 private slots:
-    void on_calculateButton_clicked();
     void on_clearButton_clicked();
     void on_addCourse_clicked();
 
@@ -38,6 +37,7 @@ private:
     QList<CourseCard*> m_courses;
     QGridLayout* m_gridLayout;
 
+    void calculateGPA();
     void reclusterGrid();
     void removeCourse(CourseCard* card);
 };

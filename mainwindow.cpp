@@ -82,7 +82,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_calculateButton_clicked()
+void MainWindow::calculateGPA()
 {
     double totalPoints = 0.0;
     double totalCredits = 0.0;
@@ -122,6 +122,7 @@ void MainWindow::on_addCourse_clicked()
 {
     CourseCard* newCard = new CourseCard(this);
     connect(newCard, &CourseCard::removeRequested, this, &MainWindow::removeCourse);
+    connect(newCard, &CourseCard::cardChanged, this, &MainWindow::calculateGPA);
 
     int index = m_courses.count();
     int row = index / GRID_COLUMNS;
@@ -158,5 +159,5 @@ void MainWindow::removeCourse(CourseCard* card)
     card->deleteLater();
 
     reclusterGrid();
-    on_calculateButton_clicked();
+    calculateGPA();
 }
