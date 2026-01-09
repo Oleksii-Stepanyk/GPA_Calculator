@@ -36,9 +36,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>-1</y>
       <width>1280</width>
-      <height>570</height>
+      <height>571</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -53,7 +53,7 @@
        <x>0</x>
        <y>0</y>
        <width>1278</width>
-       <height>568</height>
+       <height>569</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
@@ -135,9 +135,23 @@
      <string>Clear All</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="themeToggle">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>640</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Dark Mode</string>
+    </property>
+   </widget>
    <zorder>scrollArea</zorder>
    <zorder>outputLabel</zorder>
    <zorder>clearButton</zorder>
+   <zorder>themeToggle</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

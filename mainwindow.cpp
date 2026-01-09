@@ -5,8 +5,19 @@
 
 #include <QSettings>
 #include <QCloseEvent>
+#include <QStyle>
+#include <QStyleFactory>
+#include <QPalette>
+#include <QApplication>
 
 using namespace GlobalConfig;
+
+/* ==============================
+TODO:
+1. Reorder class methods
+2. Separate different types
+   of methods into separate files
+============================== */
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
@@ -17,6 +28,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::saveSettings()
 {
     QSettings settings("UkhylSystems", "GPACalculator");
+
+    settings.setValue("isDarkMode", m_isDarkMode);
 
     settings.remove("courses");
     settings.beginWriteArray("courses");
@@ -36,8 +49,13 @@ void MainWindow::loadSettings()
 {
     QSettings settings("UkhylSystems", "GPACalculator");
 
+    bool savedTheme = settings.value("isDarkMode", false).toBool();
+    ui->themeToggle->setChecked(savedTheme);
+    applyTheme(savedTheme);
+
     int size = settings.beginReadArray("courses");
 
+    // TODO: Separate card creation
     for (int i = 0; i < size; ++i) {
         settings.setArrayIndex(i);
 
@@ -55,8 +73,55 @@ void MainWindow::loadSettings()
 
     reclusterGrid();
     calculateGPA();
-    ui->containerWidget->updateGeometry();
-    ui->scrollArea->update();
+}
+
+// TODO: Move to a separate file (Make a factory for example)
+void MainWindow::applyTheme(bool dark)
+{
+    m_isDarkMode = dark;
+
+    qApp->setStyle(QStyleFactory::create("Fusion"));
+
+    QPalette p;
+
+    if (dark) {
+        p.setColor(QPalette::Window, QColor(53, 53, 53));
+        p.setColor(QPalette::WindowText, Qt::white);
+        p.setColor(QPalette::Base, QColor(25, 25, 25));
+        p.setColor(QPalette::AlternateBase, QColor(53, 53, 53));
+        p.setColor(QPalette::ToolTipBase, Qt::white);
+        p.setColor(QPalette::ToolTipText, Qt::white);
+        p.setColor(QPalette::Text, Qt::white);
+        p.setColor(QPalette::Button, QColor(53, 53, 53));
+        p.setColor(QPalette::ButtonText, Qt::white);
+        p.setColor(QPalette::BrightText, Qt::red);
+        p.setColor(QPalette::Link, QColor(42, 130, 218));
+        p.setColor(QPalette::Highlight, QColor(42, 130, 218));
+        p.setColor(QPalette::HighlightedText, Qt::black);
+
+        p.setColor(QPalette::Disabled, QPalette::Text, Qt::darkGray);
+        p.setColor(QPalette::Disabled, QPalette::ButtonText, Qt::darkGray);
+    }
+    else {
+        p.setColor(QPalette::Window, QColor(240, 240, 240));
+        p.setColor(QPalette::WindowText, Qt::black);
+        p.setColor(QPalette::Base, Qt::white);
+        p.setColor(QPalette::AlternateBase, QColor(245, 245, 245));
+        p.setColor(QPalette::ToolTipBase, Qt::white);
+        p.setColor(QPalette::ToolTipText, Qt::black);
+        p.setColor(QPalette::Text, Qt::black);
+        p.setColor(QPalette::Button, QColor(240, 240, 240));
+        p.setColor(QPalette::ButtonText, Qt::black);
+        p.setColor(QPalette::BrightText, Qt::red);
+        p.setColor(QPalette::Link, QColor(0, 0, 255));
+        p.setColor(QPalette::Highlight, QColor(42, 130, 218));
+        p.setColor(QPalette::HighlightedText, Qt::white);
+
+        p.setColor(QPalette::Disabled, QPalette::Text, Qt::gray);
+        p.setColor(QPalette::Disabled, QPalette::ButtonText, Qt::gray);
+    }
+
+    qApp->setPalette(p);
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -118,6 +183,11 @@ void MainWindow::on_clearButton_clicked(){
     }
     m_courses.clear();
     reclusterGrid();
+}
+
+void MainWindow::on_themeToggle_clicked()
+{
+    applyTheme(!m_isDarkMode);
 }
 
 void MainWindow::on_addCourse_clicked()

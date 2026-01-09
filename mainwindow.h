@@ -30,12 +30,16 @@ protected:
 private slots:
     void on_clearButton_clicked();
     void on_addCourse_clicked();
+    void on_themeToggle_clicked();
 
 private:
     Ui::MainWindow *ui;
 
     QList<CourseCard*> m_courses;
     QGridLayout* m_gridLayout;
+
+    bool m_isDarkMode = false;
+    void applyTheme(bool dark);
 
     void calculateGPA();
     void reclusterGrid();
