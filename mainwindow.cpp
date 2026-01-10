@@ -3,6 +3,7 @@
 
 #include "GlobalConfig.h"
 
+#include <QIcon>
 #include <QSettings>
 #include <QCloseEvent>
 #include <QStyle>
@@ -129,6 +130,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    setWindowTitle("GPA Calculator 1.0");
+    setWindowIcon(QIcon(":/resources/GPA_Calc.ico"));
 
     m_gridLayout = qobject_cast<QGridLayout*>(ui->containerWidget->layout());
     for(int i = 0; i < GRID_COLUMNS; i++) {

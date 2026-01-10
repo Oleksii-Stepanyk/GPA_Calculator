@@ -25,6 +25,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         coursecard.h coursecard.cpp coursecard.ui
         GlobalConfig.h
+        resources.qrc
+        resources/exe_icon.rc
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET GPA_Calculator APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

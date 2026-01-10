@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/GPA_Calc.ico</file>
+    </qresource>
+</RCC>
